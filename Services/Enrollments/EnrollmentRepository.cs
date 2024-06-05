@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using FiltroApi.Data;
 using FiltroApi.Models;
+using FiltroApi.AddControllers;
 
 namespace FiltroApi.Services
 {
@@ -25,8 +26,15 @@ namespace FiltroApi.Services
 
         public void Create(Enrollment enrollment)
         {
-            _context.Enrollments.Add(enrollment);
-            _context.SaveChanges();
+            // _context.Enrollments.Add(enrollment);
+            // _context.SaveChanges();
+
+            var student = _context.Students.Find(enrollment.StudentId);
+            var course = _context.Courses.Find(enrollment.CourseId);
+            var teacher = _context.Teachers.Find(course.TeacherId);
+
+            MailController Email = new MailController();
+            Email.SendEmail(student.Email, student.Names, course.Name, course.Description, course.Schedule, course.Duration, course.Capacity, teacher.Names);
         }
 
         public void Update(Enrollment enrollment)
