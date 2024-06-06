@@ -47,5 +47,23 @@ namespace FiltroApi.AddControllers
                 return BadRequest($"Error al traer el profesor con id {id}: {ex.Message}");
             }
         }
+
+        [HttpGet, Route("{id}/Courses")]
+        public ActionResult<IEnumerable<Course>> GetCoursesTeacher(int id)
+        {
+            var courses = _teacherRepository.CoursesTeacher(id);
+            
+            if (courses == null)
+            {
+                return NotFound($"Cursos del profesor con id {id} no encontrados");
+            }
+            try
+            {
+                return Ok(courses);
+            } catch (Exception ex)
+            {
+                return BadRequest($"Error al traer los cursos del profesor con id {id}: {ex.Message}");
+            }
+        }
     }
 }

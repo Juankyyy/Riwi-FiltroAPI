@@ -47,5 +47,41 @@ namespace FiltroApi.AddControllers
                 return BadRequest($"Error al traer el estudiante con id {id}: {ex.Message}");
             }
         }
+
+        [HttpGet, Route("{id}/Enrollments")]
+        public ActionResult<IEnumerable<Enrollment>> GetEnrollmentsStudent(int id)
+        {
+            var enrollments = _studentRepository.EnrollmentsStudent(id);
+            
+            if (enrollments == null)
+            {
+                return NotFound($"Matrículas del estudiante con id {id} no encontradas");
+            }
+            try
+            {
+                return Ok(enrollments);
+            } catch (Exception ex)
+            {
+                return BadRequest($"Error al traer las matrículas del estudiante con id {id}: {ex.Message}");
+            }
+        }
+
+        [HttpGet, Route("{date}/Birthday")]
+        public ActionResult<IEnumerable<Student>> GetStudentsBirthday(DateOnly date)
+        {
+            var students = _studentRepository.StudentsBirthday(date);
+            
+            if (students == null)
+            {
+                return NotFound($"Estudiantes con fecha de cumpleaños {date} no encontrados");
+            }
+            try
+            {
+                return Ok(students);
+            } catch (Exception ex)
+            {
+                return BadRequest($"Error al traer los estudiantes con fecha de cumpleaños {date}: {ex.Message}");
+            }
+        }
     }
 }

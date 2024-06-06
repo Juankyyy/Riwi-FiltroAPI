@@ -23,7 +23,7 @@ namespace FiltroApi.Models
         public string? Schedule { get; set; }
 
         [Required]
-        public string? Duration { get; set; }
+        public int Duration { get; set; }
 
         [Required]
         public int Capacity { get; set; }

@@ -31,27 +31,30 @@ CREATE TABLE Courses (
     Description TEXT NOT NULL,
     TeacherId INT NOT NULL,
     Schedule VARCHAR(125) NOT NULL,
-    Duration VARCHAR(50) NOT NULL,
+    Duration INT NOT NULL,
     Capacity INT NOT NULL,
     FOREIGN KEY (TeacherId) REFERENCES Teachers(Id)
 );
 
--- DROP TABLE Courses;
+DROP TABLE Courses;
+TRUNCATE TABLE Courses;
 
 INSERT INTO Courses (Name, Description, TeacherId, Schedule, Duration, Capacity)
-VALUES ("Ecuaciones 1", "En este curso se desarrollarás las habiliadades necesarias para poder resolver ecuaciones", 1, "Lunes, Martes y Viernes: 2:00PM", "2 Horas", 30);
+VALUES ("Ecuaciones 1", "En este curso se desarrollarás las habiliadades necesarias para poder resolver ecuaciones", 1, "Lunes, Martes y Viernes: 2:00PM", 2, 30),
+('Vocales 2', 'En este curso se desarrollará las habiliadades necesarias para aprender e identificar las vocales', 2, 'Jueves, Miercoles y Viernes: 5:00PM', 1, 45)
 
 CREATE TABLE Enrollments (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Date DATE NOT NULL,
     StudentId INT(10) NOT NULL,
     CourseId INT(10) NOT NULL,
-    Status ENUM("Activo", "Inactivo") NOT NULL,
+    Status ENUM("Pagada", "Pendiente de Pago", "Cancelada") NOT NULL,
     FOREIGN KEY (StudentId) REFERENCES Students(Id),
     FOREIGN KEY (CourseId) REFERENCES Courses(Id)
 );
 
--- DROP TABLE Enrollments;
+DROP TABLE Enrollments;
 
 INSERT INTO Enrollments (Date, StudentId, CourseId, Status)
-VALUES ("2024-01-12", 1, 1, "Activo");
+VALUES ("2024-01-12", 1, 1, "Pagada"),
+('2024-02-22', '3', '2', 'Cancelada');

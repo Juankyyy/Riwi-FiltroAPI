@@ -47,5 +47,23 @@ namespace FiltroApi.AddControllers
                 return BadRequest($"Error al traer la matrícula con id {id}: {ex.Message}");
             }
         }
+
+        [HttpGet, Route("{date}/Date")]
+        public ActionResult<IEnumerable<Enrollment>> GetEnrollmentsDate(DateOnly date)
+        {
+            var enrollments = _enrollmentRepository.Date(date);
+            
+            if (enrollments == null)
+            {
+                return NotFound($"Matrículas en la fecha {date} no encontradas");
+            }
+            try
+            {
+                return Ok(enrollments);
+            } catch (Exception ex)
+            {
+                return BadRequest($"Error al traer las matrículas con la fecha {date}: {ex.Message}");
+            }
+        }
     }
 }

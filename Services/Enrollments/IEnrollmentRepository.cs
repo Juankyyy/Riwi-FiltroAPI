@@ -8,5 +8,6 @@ namespace FiltroApi.Services
         public Enrollment GetOne(int id);
         public void Create(Enrollment enrollment);
         public void Update(Enrollment enrollment);
+        public IEnumerable<Enrollment> Date(DateOnly date);
     }
 }

@@ -8,5 +8,6 @@ namespace FiltroApi.Services
         public Teacher GetOne(int id);
         public void Create(Teacher teacher);
         public void Update(Teacher teacher);
+        public IEnumerable<Course> CoursesTeacher(int id);
     }
 }
