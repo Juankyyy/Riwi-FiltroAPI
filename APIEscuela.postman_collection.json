@@ -1,0 +1,483 @@
+{
+	"info": {
+		"_postman_id": "881b00cb-6e7c-484f-b80b-e652b8e2434e",
+		"name": "API Escuela",
+		"description": "## 👋 Introducción\n\nLas escuelas enfrentan el desafío de gestionar de manera eficiente la información de sus  \nalumnos, profesores, cursos y matrículas. Un sistema manual o fragmentado puede  \ngenerar ineficiencias, errores y pérdida de datos importantes. Un sistema centralizado y  \nautomatizado permitiría optimizar la gestión de la escuela y mejorar la experiencia de los  \nalumnos, profesores.\n\n## 🚀 Entidades\n\nEn está colección se pueden encontrar 4 entidades:\n\n- **Courses**: Información sobre los cursos que se ofrecen en la escuela, incluyendo nombre del curso, descripción, profesor a cargo, horario, duración y capacidad máxima.\n- **Teachers:** Información sobre los profesores de la escuela, incluyendo nombre completo, especialidad, teléfono, correo electrónico y años de experiencia.\n- **Enrollments:** Información sobre las matrículas de los alumnos en los cursos, incluyendo fecha de matrícula, alumno matriculado, curso matriculado y estado de la matrícula (pagada, pendiente de pago, cancelada).\n- **Students**: Información sobre los alumnos de la escuela, incluyendo nombre completo, fecha de nacimiento, dirección, teléfono, correo electrónico.\n    \n\nPara ver cómo funcionan los endopints de cada entidad mira la documentación completa :)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35124146"
+	},
+	"item": [
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "GetCourses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Courses"
+							]
+						},
+						"description": "Endpoint que lista todos los cursos"
+					},
+					"response": []
+				},
+				{
+					"name": "GetCourse",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Courses/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Courses",
+								"2"
+							]
+						},
+						"description": "Endpoint que lista un curso en específico determinado por su id"
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCourse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Vocales 2\",\n    \"description\": \"En este curso se desarrollarás las habiliadades necesarias para aprender e identificar las vocales\",\n    \"teacherId\": 2,\n    \"schedule\": \"Jueves, Miercoles y Viernes: 4:00PM\",\n    \"duration\": \"1 Hora\",\n    \"capacity\": 45\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Courses"
+							]
+						},
+						"description": "Endpoint que permite crear un nuevo curso"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCourse",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"Vocales 2\",\n    \"description\": \"En este curso se desarrollará las habiliadades necesarias para aprender e identificar las vocales\",\n    \"teacherId\": 2,\n    \"schedule\": \"Jueves, Miercoles y Viernes: 5:00PM\",\n    \"duration\": \"1 Hora\",\n    \"capacity\": 45\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Courses/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Courses",
+								"2"
+							]
+						},
+						"description": "Endpoint en el cual se puede editar un curso mediante su id"
+					},
+					"response": []
+				}
+			],
+			"description": "Entidad que posee los endpoints para poder manipular los Cursos"
+		},
+		{
+			"name": "Teachers",
+			"item": [
+				{
+					"name": "GetTeachers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Teachers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Teachers"
+							]
+						},
+						"description": "Endpoint que lista todos los profesores"
+					},
+					"response": []
+				},
+				{
+					"name": "GetTeacher",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Teachers/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Teachers",
+								"1"
+							]
+						},
+						"description": "Endpoint que lista un profesor en específico determinado por su id"
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTeacher",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"names\": \"Armando\",\n    \"specialty\": \"Español\",\n    \"phone\": \"310124543\",\n    \"email\": \"armandoprofe@gmail.com\",\n    \"yearsExperience\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Teachers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Teachers"
+							]
+						},
+						"description": "Endpoint que permite crear un nuevo profesor"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTeacher",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"names\": \"Julio Profe\",\n    \"specialty\": \"Matemáticas\",\n    \"phone\": \"31234567\",\n    \"email\": \"julioprofe@gmail.com\",\n    \"yearsExperience\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Teachers/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Teachers",
+								"1"
+							]
+						},
+						"description": "Endpoint en el cual se puede editar un profesor mediante su id"
+					},
+					"response": []
+				},
+				{
+					"name": "GetTeacherCourses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Teachers/2/Courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Teachers",
+								"2",
+								"Courses"
+							]
+						},
+						"description": "Endpoint con la posibilidad de listar todos los cursos del profesor con el id especificado"
+					},
+					"response": []
+				}
+			],
+			"description": "Entidad que posee los endpoints para poder manipular los Profesores"
+		},
+		{
+			"name": "Enrollments",
+			"item": [
+				{
+					"name": "GetEnrollments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Enrollments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Enrollments"
+							]
+						},
+						"description": "Endpoint que lista todas las matrículas"
+					},
+					"response": []
+				},
+				{
+					"name": "GetEnrollment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Enrollments/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Enrollments",
+								"2"
+							]
+						},
+						"description": "Endpoint que lista una matrícula en específico determinado por su id"
+					},
+					"response": []
+				},
+				{
+					"name": "CreateEnrollment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\": \"2024-02-22\",\n    \"studentId\": 1,\n    \"courseId\": 1,\n    \"status\": \"Activo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Enrollments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Enrollments"
+							]
+						},
+						"description": "Endpoint que permite crear una nueva matrícula"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEnrollment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"2\",\n    \"date\": \"2024-02-22\",\n    \"studentId\": 3,\n    \"courseId\": 2,\n    \"status\": \"Activo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Enrollments/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Enrollments",
+								"2"
+							]
+						},
+						"description": "Endpoint en el cual se puede editar una matrícula mediante su id"
+					},
+					"response": []
+				},
+				{
+					"name": "GetDateEnrollments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Enrollments/2024-01-12/Date",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Enrollments",
+								"2024-01-12",
+								"Date"
+							]
+						},
+						"description": "Endopint que lista todas las matrículas realizadas en una fecha determinada"
+					},
+					"response": []
+				}
+			],
+			"description": "Entidad que posee los endpoints para poder manipular las matrículas"
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "GetStudents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Students",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Students"
+							]
+						},
+						"description": "Endpoint que lista todos los estudiantes"
+					},
+					"response": []
+				},
+				{
+					"name": "GetStudent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Students/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Students",
+								"1"
+							]
+						},
+						"description": "Endpoint que lista un estudiante en específico determinado por su id"
+					},
+					"response": []
+				},
+				{
+					"name": "CreateStudent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"names\": \"Maicol\",\n    \"birthDate\": \"1999-05-05\",\n    \"address\": \"Calle 2 # 2-D 22\",\n    \"email\": \"kemtch19@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Students",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Students"
+							]
+						},
+						"description": "Endpoint que permite crear un nuevo estudiante"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateStudent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3,\n    \"names\": \"Kemtch\",\n    \"birthDate\": \"1999-05-05\",\n    \"address\": \"Calle 2 # 2-D 22\",\n    \"email\": \"kemtch19@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Students/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Students",
+								"3"
+							]
+						},
+						"description": "Endpoint en el cual se puede editar un estudiante mediante su id"
+					},
+					"response": []
+				},
+				{
+					"name": "GetStudentEnrollments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Students/3/Enrollments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Students",
+								"3",
+								"Enrollments"
+							]
+						},
+						"description": "Endpoint en el que se listan todas las matrículas que tiene un estudiante determinado por su id"
+					},
+					"response": []
+				},
+				{
+					"name": "GetStudentsBirthday",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Students/2005-02-03/Birthday",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Students",
+								"2005-02-03",
+								"Birthday"
+							]
+						},
+						"description": "Endpoint que lista todos los estudiantes que cumplen años en determinada fecha"
+					},
+					"response": []
+				}
+			],
+			"description": "Entidad que posee los endpoints para poder manipular las matrículas"
+		}
+	]
+}
